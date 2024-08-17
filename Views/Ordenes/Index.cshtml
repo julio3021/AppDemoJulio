@@ -1,0 +1,56 @@
+@model AppDemoJulio.Models.Ordenes
+
+@{
+    ViewBag.Title = "Ordenes";
+    var listaOrdenes = ViewData["listaOrdenes"] as List<Ordenes>;
+}
+
+<div class="container">
+    <h1 class="text-center mb-4">@ViewData["Title"]</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-asp-controller="Ordenes" asp-action="Create" method="post">
+                <div class="form-group">
+                    <label asp-for="Instrumento" class="control-label"></label>
+                    <input asp-for="Instrumento" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Precio" class="control-label"></label>
+                    <input asp-for="Precio" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Cantidad" class="control-label"></label>
+                    <input asp-for="Cantidad" class="form-control" />
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">Ordenar</button>
+                </div>                
+            </form>
+        </div>
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Instrumento</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Costo</th>
+                    <th>Taxes</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var orden in listaOrdenes)
+                {
+                    <tr>
+                        <td>@orden.Instrumento</td>
+                        <td>@orden.Precio</td>
+                        <td>@orden.Cantidad</td>
+                        <td>@orden.Costo</td>
+                        <td>@orden.Tax</td>
+                        <td>@orden.Total</td>
+                    </tr>
+                }
+           </tbody>
+        </table>        
+    </div> 
+</div>
